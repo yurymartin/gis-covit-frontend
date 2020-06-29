@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import Table from '../Organisms/Table'
+import Table from "../Organisms/Table";
 import Spinner from "../Organisms/Spinner";
-
 
 const config = {
   headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -52,7 +51,7 @@ const Temperatura = () => {
   useEffect(() => {
     getTemperatures();
   }, []);
-  return temperatures.length > 0 ? (
+  return (
     <div className="main-banner img-container dark-color">
       <div className="ed-grid lg-grid-6">
         <div className="lg-cols-4 lg-x-2">
@@ -86,15 +85,15 @@ const Temperatura = () => {
                 </div>
               </div>
             </form>
-            <Table temperaturas={temperatures}/>
+            {temperatures.length > 0 ? (
+              <Table temperaturas={temperatures} />
+            ) : (
+              <Spinner />
+            )}
           </div>
         </div>
       </div>
     </div>
-  ) : (
-    <>
-      <Spinner />
-    </>
   );
 };
 
