@@ -5,7 +5,9 @@ import Axios from "axios";
 import io from "socket.io-client";
 import Spinner from "../Organisms/Spinner";
 
-const socket = io("https://gis-covit.herokuapp.com/");
+const socket = io("https://gis-covit.herokuapp.com/",{
+  forceNew: true
+});
 // console.log(socket);
 
 const icon = new Icon({
