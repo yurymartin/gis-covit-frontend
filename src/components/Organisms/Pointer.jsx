@@ -3,8 +3,11 @@ import io from "socket.io-client";
 import { Icon } from "leaflet";
 import { Marker, Popup } from "react-leaflet";
 
-const socket = io("http://localhost:3001/", {
-  forceNew: true,
+// const socket = io("http://localhost:3001/", {
+//   forceNew: true,
+// });
+const socket = io("https://gis-covit.herokuapp.com/",{
+  forceNew: true
 });
 
 const Pointer = () => {

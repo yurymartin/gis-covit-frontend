@@ -6,12 +6,12 @@ import io from "socket.io-client";
 import Spinner from "../Organisms/Spinner";
 import Pointer from "../Organisms/Pointer";
 
-// const socket = io("https://gis-covit.herokuapp.com/",{
-//   forceNew: true
-// });
-const socket = io("http://localhost:3001/", {
-  forceNew: true,
+const socket = io("https://gis-covit.herokuapp.com/",{
+  forceNew: true
 });
+// const socket = io("http://localhost:3001/", {
+//   forceNew: true,
+// });
 
 // const icon = new Icon({
 //   iconUrl: "/alfiler.svg",
