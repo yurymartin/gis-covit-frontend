@@ -12,7 +12,7 @@ const Footer = () => (
       textAlign: "center",
     }}
   >
-    <p style={{marginTop: "25px"}}>
+    <div style={{marginTop: "25px"}}>
       <img
         src="https://image.flaticon.com/icons/svg/3107/3107665.svg"
         alt=""
@@ -20,7 +20,7 @@ const Footer = () => (
       />
       <p>GIS-COVIT</p>
       <small>&copy; Copyright 2020, version 1.0 | Developed by <a href="https://www.facebook.com/yurizito.martin">Yury Martin</a></small> 
-    </p>
+    </div>
   </footer>
 );
 
