@@ -6,12 +6,13 @@ import io from "socket.io-client";
 import Spinner from "../Organisms/Spinner";
 import Pointer from "../Organisms/Pointer";
 
-const socket = io("https://gis-covit.herokuapp.com/",{
-  forceNew: true
-});
-// const socket = io("http://localhost:3001/", {
-//   forceNew: true,
+// const socket = io("https://gis-covit.herokuapp.com/",{
+//   forceNew: true
 // });
+
+const socket = io("http://localhost:3001/", {
+  forceNew: true,
+});
 
 // const icon = new Icon({
 //   iconUrl: "/alfiler.svg",
@@ -27,6 +28,7 @@ const Mapa = () => {
   const [lng, setLng] = useState(0);
   const [temperature, setTemperature] = useState(0);
   const [estado, setEstado] = useState("");
+  const [response, setResponse] = useState([]);
   // const [response, setResponse] = useState({});
 
   // const Nuevo = () => {
@@ -65,7 +67,11 @@ const Mapa = () => {
         temperatura: temperature,
       });
     });
-  }, [lng, lat, estado, temperature]);
+    socket.on("newUserCoordinates", (data) => {
+      setResponse(data);
+      console.log(response);
+    });
+  }, [lng, lat, estado, temperature, response]);
 
   return (
     <>
@@ -77,7 +83,8 @@ const Mapa = () => {
             <TileLayer
               url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
+            />{" "}
+            */}
             {/* <Marker position={[lat, lng]} icon={icon}>
               <Popup>
                 {`Temperatura: ${temperature} °C`} <br />
@@ -85,14 +92,6 @@ const Mapa = () => {
                 {temperature < 37 ? `Estado: ${estado}` : `Estado: ${estado}`}
               </Popup>
             </Marker> */}
-
-            {/* {isNaN(response.lat) && isNaN(response.lng) ? (
-              <>
-                <div></div>
-              </>
-            ) : (
-              <Nuevo />
-            )} */}
             <Pointer />
           </Map>
         </>

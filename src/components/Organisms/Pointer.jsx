@@ -3,12 +3,12 @@ import io from "socket.io-client";
 import { Icon } from "leaflet";
 import { Marker, Popup } from "react-leaflet";
 
-// const socket = io("http://localhost:3001/", {
-//   forceNew: true,
-// });
-const socket = io("https://gis-covit.herokuapp.com/",{
-  forceNew: true
+const socket = io("http://localhost:3001/", {
+  forceNew: true,
 });
+// const socket = io("https://gis-covit.herokuapp.com",{
+//   forceNew: true
+// });
 
 const Pointer = () => {
   const icon = new Icon({
@@ -21,14 +21,13 @@ const Pointer = () => {
   useEffect(() => {
     socket.on("newUserCoordinates", (data) => {
       setResponse(data);
-      console.log(data.id);
     });
-  }, []);
+  }, [response]);
 
-  return isNaN(response.lat) && isNaN(response.lng) ? (
+  return isNaN(response.lat) || isNaN(response.lng) ? (
     <></>
   ) : (
-    <Marker position={[response.lat, response.lng]} icon={icon}>
+    <Marker position={[response.lat , response.lng]} icon={icon}>
       <Popup>
         {`Temperatura: ${response.temperatura} °C`} <br />
         {`Persona: ${response.displayName}`} <br />
